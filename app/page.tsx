@@ -1,9 +1,7 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div>
-      <h1>halo dunia</h1>
+    <div className="max-w-screen-xl mx-auto py-6 p-4">
+      <h1 className="text-2xl">halo dunia</h1>
     </div>
   );
 }
