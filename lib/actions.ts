@@ -5,10 +5,14 @@ import { hashSync } from "bcrypt-ts";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 
-export const signUpCredentials = async (FormData: FormData) => {
+export const signUpCredentials = async (
+  PrevState: unknown,
+  formData: FormData
+) => {
   const validatedFields = RegisterSchema.safeParse(
-    Object.fromEntries(FormData.entries())
+    Object.fromEntries(formData.entries())
   );
+
   if (!validatedFields.success) {
     return {
       error: validatedFields.error.flatten().fieldErrors,
@@ -21,8 +25,8 @@ export const signUpCredentials = async (FormData: FormData) => {
   try {
     await prisma.user.create({
       data: {
-        name,
-        email,
+        name: name,
+        email: email,
         password: hashedPassword,
       },
     });

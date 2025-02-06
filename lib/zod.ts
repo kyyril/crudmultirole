@@ -6,10 +6,10 @@ export const RegisterSchema = object({
   password: string()
     .min(8, "Password must be more than 8 characters")
     .max(32, "Password must be less than 32 characters"),
-  ConfirmPassword: string()
+  confirmPassword: string()
     .min(8, "Password must be more than 8 characters")
     .max(32, "Password must be less than 32 characters"),
-}).refine((data) => data.password === data.ConfirmPassword, {
+}).refine((data) => data.password === data.confirmPassword, {
   message: "Password does not match",
-  path: ["ConfirmPassword"],
+  path: ["confirmPassword"],
 });

@@ -1,9 +1,12 @@
+"use client";
+import { signUpCredentials } from "@/lib/actions";
 import Link from "next/link";
-import React from "react";
+import { useFormState } from "react-dom";
 
 const FormRegister = () => {
+  const [state, formAction] = useFormState(signUpCredentials, null);
   return (
-    <form action="" className="space-y-6">
+    <form action={formAction} className="space-y-6">
       <div>
         <label
           htmlFor="name"
@@ -18,7 +21,9 @@ const FormRegister = () => {
           placeholder="jonh doe"
         />
         <div aria-live="polite" aria-atomic="true">
-          <span className="text-sm text-red-500 mt-2">message</span>
+          <span className="text-sm text-red-500 mt-2">
+            {state?.error?.name}
+          </span>
         </div>
       </div>
 
@@ -36,7 +41,9 @@ const FormRegister = () => {
           className="bg-gray-50 border-gray-300 w-full p-2.5 text-gray-900 rounded-lg"
         />
         <div aria-live="polite" aria-atomic="true">
-          <span className="text-sm text-red-500 mt-2">message</span>
+          <span className="text-sm text-red-500 mt-2">
+            {state?.error?.email}
+          </span>
         </div>
       </div>
 
@@ -54,7 +61,9 @@ const FormRegister = () => {
           className="bg-gray-50 border-gray-300 w-full p-2.5 text-gray-900"
         />
         <div aria-live="polite" aria-atomic="true">
-          <span className="text-sm text-red-500 mt-2">message</span>
+          <span className="text-sm text-red-500 mt-2">
+            {state?.error?.password}
+          </span>
         </div>
       </div>
 
@@ -67,12 +76,14 @@ const FormRegister = () => {
         </label>
         <input
           type="password"
-          name="confirmpassword"
+          name="confirmPassword"
           placeholder="******"
           className="bg-gray-50 border-gray-300 w-full p-2.5 text-gray-900"
         />
         <div aria-live="polite" aria-atomic="true">
-          <span className="text-sm text-red-500 mt-2">message</span>
+          <span className="text-sm text-red-500 mt-2">
+            {state?.error?.confirmPassword}
+          </span>
         </div>
       </div>
 
